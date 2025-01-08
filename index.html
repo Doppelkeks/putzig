@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Putzig Example</title>
+    <style>
+        .input-wrapper {
+            margin-bottom: 10px;
+        }
+        .setup-ui {
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            padding: 10px;
+        }
+    </style>
+	<script src="js/Putzig.js"></script>
+</head>
+<body>
+	<div id="setup-container"></div>
+    <div id="ui-container"></div>
+    <button id="getValuesButton">Get Values</button>
+	<button id="saveElements">Save inputs</button>
+    <script>
+		// Initialize the framework
+		const putzig = new Putzig('#ui-container', '#setup-container');
+
+		// Load templates and initialize the framework
+		putzig
+		    .loadTemplates(['templates/templates.html'])
+		    .then(() => {
+		        // Set up the input creation UI
+		        putzig.setupInputs();
+
+		        putzig.deserialize(localStorage.getItem("inputs"));
+
+		        // Add an event listener to log input values
+		        document.getElementById('getValuesButton').addEventListener('click', () => {
+		            const values = putzig.getValues();
+		            console.log('Input Values:', values);
+		        });
+
+		        // Add an event listener to log input values
+		        document.getElementById('saveElements').addEventListener('click', () => {
+		        	console.log(putzig.getSerializedData());
+		            localStorage.setItem("inputs", putzig.getSerializedData());
+		        });
+		    });
+    </script>
+</body>
+</html>

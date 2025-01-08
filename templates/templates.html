@@ -1,0 +1,61 @@
+<!-- templates.html -->
+<template id="template-color" data-input-type="color">
+    <div class="input-wrapper">
+        <label>{{label}}</label>
+        <input type="color" data-ui-input data-ui-name="{{name}}">
+    </div>
+</template>
+
+<template id="template-float" data-input-type="float">
+    <div class="input-wrapper">
+        <label>{{label}}</label>
+        <input type="number" step="{{step}}" data-ui-input data-ui-name="{{name}}">
+    </div>
+</template>
+
+<template id="template-int" data-input-type="int">
+    <div class="input-wrapper">
+        <label>{{label}}</label>
+        <input type="number" step="{{step}}" data-ui-input data-ui-name="{{name}}">
+    </div>
+</template>
+
+<template id="template-string" data-input-type="string">
+    <div class="input-wrapper">
+        <label>{{label}}</label>
+        <input type="text" data-ui-input data-ui-name="{{name}}">
+    </div>
+</template>
+
+<template id="template-image" data-input-type="image">
+    <div class="input-wrapper">
+        <label>{{label}}</label>
+        <input type="file" accept="image/*" data-ui-input data-ui-name="{{name}}">
+    </div>
+</template>
+
+<template id="setup-ui">
+    <div class="setup-ui">
+        <div>
+            <label>Input Type:</label>
+            <select id="inputType"></select>
+        </div>
+        <div>
+            <label>Label:</label>
+            <input type="text" id="inputLabel">
+        </div>
+        <div>
+            <label>Name:</label>
+            <input type="text" id="inputName">
+        </div>
+        <div>
+            <label>Default Value:</label>
+            <input type="text" id="inputDefaultValue">
+        </div>
+        <div>
+            <label>Step (optional):</label>
+            <input type="number" id="inputStep">
+        </div>
+        <button id="addInputButton">Add Input</button>
+    </div>
+</template>
