@@ -1,61 +1,65 @@
-<!-- templates.html -->
-<template id="template-color" data-input-type="color">
-    <div class="input-wrapper">
-        <label>{{label}}</label>
-        <input type="color" data-ui-input data-ui-name="{{name}}">
-    </div>
+<!-- Float Input -->
+<template id="number" data-displayName="Number" data-default="0" data-validate="input.value = Math.round(Math.min(Math.max(Number(input.value), input.min), input.max)/input.step)*input.step" data-optionalFields="['min', 'max', 'step']" data-input>
+    <input class="putzig-input" id="{{id}}" name="{{id}}" type="number" step="{{step}}" min="{{min}}" max="{{max}}" value="{{value}}">
 </template>
 
-<template id="template-float" data-input-type="float">
-    <div class="input-wrapper">
-        <label>{{label}}</label>
-        <input type="number" step="{{step}}" data-ui-input data-ui-name="{{name}}">
-    </div>
+<!-- String Input -->
+<template id="text" data-displayName="Text" data-default="Input" data-input>
+    <input class="putzig-input" id="{{id}}" name="{{id}}" type="text" value="{{value}}">
 </template>
 
-<template id="template-int" data-input-type="int">
-    <div class="input-wrapper">
-        <label>{{label}}</label>
-        <input type="number" step="{{step}}" data-ui-input data-ui-name="{{name}}">
-    </div>
+<!-- Color Picker -->
+<template id="color" data-displayName="Color" data-default="#ffffff" data-input>
+    <input class="putzig-input" id="{{id}}" name="{{id}}" type="color" value="{{value}}">
 </template>
 
-<template id="template-string" data-input-type="string">
-    <div class="input-wrapper">
-        <label>{{label}}</label>
-        <input type="text" data-ui-input data-ui-name="{{name}}">
-    </div>
+<!-- Image Upload -->
+<template id="image" data-displayName="Image" data-default="./templates/testImage.jpg" data-input>
+    <img id="{{id}}" src="{{value}}" alt="" data-sync="src">
+    <input class="putzig-input" name="{{id}}" type="file" accept="image/*" value="{{value}}">
 </template>
 
-<template id="template-image" data-input-type="image">
-    <div class="input-wrapper">
-        <label>{{label}}</label>
-        <input type="file" accept="image/*" data-ui-input data-ui-name="{{name}}">
-    </div>
+<!-- Float Slider -->
+<template id="float-slider" data-displayName="Slider" data-validate="input.value = Math.round(Math.min(Math.max(Number(input.value), input.min), input.max)/input.step)*input.step" data-optionalFields="['min', 'max', 'step']" data-default="0" data-input>
+    <input  class="putzig-input" id="{{id}}" name="{{id}}" type="range" step="{{step}}" min="{{min}}" max="{{max}}" value="{{value}}">
+    <label for="{{id}}" data-sync="innerHTML">{{value}}</label>
 </template>
 
+<!-- Setup UI Template -->
 <template id="setup-ui">
     <div class="setup-ui">
-        <div>
-            <label>Input Type:</label>
-            <select id="inputType"></select>
-        </div>
-        <div>
-            <label>Label:</label>
-            <input type="text" id="inputLabel">
-        </div>
-        <div>
-            <label>Name:</label>
-            <input type="text" id="inputName">
-        </div>
-        <div>
-            <label>Default Value:</label>
-            <input type="text" id="inputDefaultValue">
-        </div>
-        <div>
-            <label>Step (optional):</label>
-            <input type="number" id="inputStep">
-        </div>
-        <button id="addInputButton">Add Input</button>
+        <p>
+            <label for="inputType">Input Type:</label>
+            <select name="inputType" id="inputType" class="inputType"></select>
+        </p>
+        <input type="text" name="inputName" class="inputName" placeholder="Input">
+
+        <!-- Container for dynamically changing input fields -->
+        <div class="dynamicInputContainer"></div>
+        <div class="optionalFieldsContainer"></div>
+        <button class="addInputButton">Add Input</button>
     </div>
+</template>
+
+<template id="input-row">
+    <div class="putzig-input-wrapper" data-defaultValue="{{value}}" data-id="{{id}}" data-uniqueName="{{label}}" data-type="{{type}}">
+        <label for="{{id}}">{{label}}</label>
+        {{input}}
+        <button class="putzig-delete-button"></button>
+    </div>
+</template>
+
+<template id="min" data-default="0">
+    <label for="min">Min. Value:</label>
+    <input class="putzig-input" id="min" name="min" type="number">
+</template>
+
+<template id="max" data-default="100">
+    <label for="max">Max. Value:</label>
+    <input class="putzig-input" id="max" name="max" type="number">
+</template>
+
+<template id="step" data-default="0.01">
+    <label for="step">Step:</label>
+    <input class="putzig-input" id="step" name="step" type="number">
 </template>
